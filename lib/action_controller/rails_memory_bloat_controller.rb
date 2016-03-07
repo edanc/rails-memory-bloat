@@ -2,7 +2,9 @@ module ActionController #:nodoc:
   module RailsMemoryBloatController
     extend ActiveSupport::Concern
     # after_filter :log_memory_usage
+      require 'pry'
     def log_memory_usage
+      binding.pry
       rss = File.read('/proc/self/statm').split(' ')[1].to_i * 4
       records = ActiveRecordInstanceCount::HashUtils.to_sorted_array(ActiveRecord::Base.instantiated_hash)
       records.unshift(ActiveRecord::Base.total_objects_instantiated)
