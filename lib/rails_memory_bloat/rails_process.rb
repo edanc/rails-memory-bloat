@@ -6,6 +6,7 @@ class RailsMemoryBloat::RailsProcess
     @pid = pid
     @requests = []
   end
+
   def self.find(pid)
     @@instances[pid] ||= new(pid)
   end

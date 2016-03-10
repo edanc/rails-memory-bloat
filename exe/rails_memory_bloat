@@ -28,6 +28,7 @@ File.open(log, 'r').each_line do |line|
   request = RailsMemoryBloat::Request.new(line)
 end
 
+binding.pry
 RailsMemoryBloat::RailsProcess.instances.each do |process|
     binding.pry
   File.open("#{output}/#{process.csv_path}", 'w') do |csv|

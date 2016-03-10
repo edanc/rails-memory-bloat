@@ -3,6 +3,7 @@ require 'rails_memory_bloat/rails_process'
 class RailsMemoryBloat::Request
   attr_accessor :previous, :process, :rss, :resource, :records, :record_count, :user_id
   @@instances ||= []
+  require 'pry'
 
   def self.new(*args)
     o = super(*args)
@@ -21,6 +22,7 @@ class RailsMemoryBloat::Request
       abort("invalid line: #{log_string.strip}")  
     end
 
+    binding.pry
     @records, @record_count, @resource = $1, $2.to_i, RailsMemoryBloat::Resource.find($4)
     @records = @records.split(' | ')[1..-1]
 
