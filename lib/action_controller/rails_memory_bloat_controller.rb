@@ -1,7 +1,10 @@
 module ActionController #:nodoc:
   module RailsMemoryBloatController
     extend ActiveSupport::Concern
-    after_filter :log_memory_usage
+    included do
+      after_filter :log_memory_usage
+    end
+
     require 'pry'
     def log_memory_usage
       binding.pry
