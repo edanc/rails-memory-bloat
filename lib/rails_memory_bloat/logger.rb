@@ -16,6 +16,7 @@ module RailsMemoryBloat
               "User: #{@user.try(:id).inspect}", "Mem: #{@@mem.kb}",
               "Records: (#{records.join(' | ')})"]
       logger.info("[Memory Usage] #{tags.join(' ')}; #{request.fullpath}")
+      logger.debug("[Memory Usage] #{tags.join(' ')}; #{request.fullpath}")
     end
   end
 end
