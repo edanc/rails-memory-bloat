@@ -1,5 +1,6 @@
 require 'get_process_mem'
 require 'active_support/concern'
+require 'pry'
 module RailsMemoryBloat
   module Logger
     extend ActiveSupport::Concern
@@ -8,6 +9,7 @@ module RailsMemoryBloat
     end
 
     def log_memory_usage
+      binding.pry
       @@mem ||= GetProcessMem.new
       records = ActiveRecordInstanceCount::HashUtils.to_sorted_array(ActiveRecord::Base.instantiated_hash)
       records.unshift(ActiveRecord::Base.total_objects_instantiated)
